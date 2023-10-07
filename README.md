@@ -1,2 +1,5 @@
+<!-- @format -->
+
 # gamezone
-Combining different games and LLMS for gbl
+
+Combining different games and LLM for gbl

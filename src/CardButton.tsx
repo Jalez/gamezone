@@ -1,10 +1,10 @@
 /** @format */
 
-import { Button } from '@mui/material';
-import { useEffect } from 'react';
-import { styled } from '@mui/material/styles';
-import { Box } from '@mui/material';
-import { keyframes } from '@emotion/react';
+import { Button } from "@mui/material";
+import { useEffect } from "react";
+import { styled } from "@mui/material/styles";
+import { Box } from "@mui/material";
+import { keyframes } from "@emotion/react";
 
 const appear = keyframes`
     from {
@@ -44,68 +44,69 @@ const bounce = keyframes`
 `;
 
 interface StyledCardButtonProps {
-	cts: string;
-	state: boolean;
+  cts: string;
+  state: boolean;
 }
 const StyledCardButton = styled(Button)<StyledCardButtonProps>`
-	background-color: ${(props) => props.cts};
-	color: ${(props) => (props.cts === 'white' ? 'black' : 'white')};
-	transition: background-color 0.5s ease;
-	animation: ${(props) => (props.state ? appear : disappear)} 1s ease;
-	&:hover {
-		background-color: ${(props) => props.cts};
-	}
-	opacity: ${(props) => (props.state ? 1 : 0)};
-	width: 300px;
-	height: 100px;
+  background-color: ${(props) => props.cts};
+  color: ${(props) => (props.cts === "white" ? "#222" : "white")};
+  transition: background-color 0.5s ease;
+  animation: ${(props) => (props.state ? appear : disappear)} 1s ease;
+  &:hover {
+    background-color: ${(props) => props.cts};
+  }
+  opacity: ${(props) => (props.state ? 1 : 0)};
+  width: 300px;
+  height: 100px;
 `;
 
 const StyledBox = styled(Box)`
-	margin: 20px;
+  margin: 20px;
 `;
 
 interface MatchCardProps {
-	text: string;
-	type: string;
-	active: boolean;
-	matched: boolean;
-	onClick: (text: string) => void;
-	onChange: (text: string) => void;
+  text: string;
+  type: string;
+  active: boolean;
+  matched: boolean;
+  onClick: (text: string) => void;
+  onChange: (text: string) => void;
 }
 
 const MatchCard = ({
-	text,
-	active,
-	onClick,
-	matched,
-	onChange,
+  text,
+  active,
+  onClick,
+  matched,
+  onChange,
 }: MatchCardProps) => {
-	useEffect(() => {
-		let setTimeoutId: any;
-		if (matched) {
-			setTimeoutId = setTimeout(() => {
-				onChange(text);
-			}, 1000);
-		}
-		return () => clearTimeout(setTimeoutId);
-	}, [matched]);
+  useEffect(() => {
+    let setTimeoutId: any;
+    if (matched) {
+      setTimeoutId = setTimeout(() => {
+        onChange(text);
+      }, 1000);
+    }
+    return () => clearTimeout(setTimeoutId);
+  }, [matched]);
 
-	const handleClick = () => {
-		if (!active) onClick(text);
-		else onClick('');
-	};
+  const handleClick = () => {
+    if (!active) onClick(text);
+    else onClick("");
+  };
 
-	return (
-		<StyledBox>
-			<StyledCardButton
-				variant='contained'
-				cts={active ? 'white' : 'black'}
-				state={!matched}
-				onClick={handleClick}>
-				{text}
-			</StyledCardButton>
-		</StyledBox>
-	);
+  return (
+    <StyledBox>
+      <StyledCardButton
+        variant="contained"
+        cts={active ? "white" : "#111"}
+        state={!matched}
+        onClick={handleClick}
+      >
+        {text}
+      </StyledCardButton>
+    </StyledBox>
+  );
 };
 
 export default MatchCard;
