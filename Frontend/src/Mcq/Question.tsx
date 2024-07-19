@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+/** @format */
+
+import React, { useState, useEffect } from 'react';
 
 import {
   Button,
@@ -8,18 +10,16 @@ import {
   FormControlLabel,
   Radio,
   Stack,
-  Slide,
-  Box,
-} from "@mui/material";
-import { Question_i } from "./interfaces";
-import ThumbsUp from "../ThumbsUp";
+} from '@mui/material';
+import ThumbsUp from '../ThumbsUp';
+import { mcq } from '../interfaces';
 
 const Question: React.FC<{
-  question: Question_i;
+  question: mcq;
   onAnswer: (answer: boolean) => void;
 }> = ({ question, onAnswer }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<string>("");
-  const [correctAnswer, setCorrectAnswer] = useState<string>("");
+  const [selectedAnswer, setSelectedAnswer] = useState<string>('');
+  const [correctAnswer, setCorrectAnswer] = useState<string>('');
   const [solved, setSolved] = useState<boolean>(false);
 
   const [showThumbsUp, setShowThumbsUp] = useState<boolean>(false);
@@ -30,11 +30,12 @@ const Question: React.FC<{
   };
 
   useEffect(() => {
-    setSelectedAnswer("");
+    setSelectedAnswer('');
     showFailureMessage && setShowFailureMessage(false);
     setCorrectAnswer(question.answer);
     setShowThumbsUp(false);
     setSolved(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [question]);
 
   //   useEffect(() => {
@@ -50,7 +51,7 @@ const Question: React.FC<{
   //   }, [showThumbsUp]);
 
   useEffect(() => {
-    let timeOutId: any;
+    let timeOutId: NodeJS.Timeout;
     if (solved) {
       timeOutId = setTimeout(() => {
         onAnswer(true);
@@ -59,6 +60,7 @@ const Question: React.FC<{
     return () => {
       if (timeOutId) clearTimeout(timeOutId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [solved]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -70,10 +72,10 @@ const Question: React.FC<{
       question.solvedTimes++;
       question.sessionAttempts++;
       setSolved(true);
-      console.log("Correct!");
+      console.log('Correct!');
     } else {
       question.sessionAttempts++;
-      console.log("Wrong!");
+      console.log('Wrong!');
       onAnswer(false);
     }
   };
@@ -82,25 +84,23 @@ const Question: React.FC<{
     <form onSubmit={handleSubmit}>
       <Paper
         style={{
-          padding: "16px",
-          marginBottom: "16px",
+          padding: '16px',
+          marginBottom: '16px',
           //   give it a greenish background if the answer is correct
           backgroundColor: showThumbsUp
-            ? "#e8f5e9"
+            ? '#e8f5e9'
             : showFailureMessage
-            ? "#ffebee"
-            : "#fff",
-        }}
-      >
-        <Stack direction="row" spacing={2}>
-          <Typography variant="h6">{question.question}</Typography>
+            ? '#ffebee'
+            : '#fff',
+        }}>
+        <Stack direction='row' spacing={2}>
+          <Typography variant='h6'>{question.question}</Typography>
         </Stack>
         <RadioGroup
           value={selectedAnswer}
           onChange={handleChange}
           //  disable the radio buttons if the answer is correct
-          style={{ pointerEvents: showThumbsUp ? "none" : "auto" }}
-        >
+          style={{ pointerEvents: showThumbsUp ? 'none' : 'auto' }}>
           {question.options.map((option, index) => (
             <FormControlLabel
               key={index}
@@ -114,20 +114,19 @@ const Question: React.FC<{
         {showThumbsUp ? (
           <ThumbsUp display={showThumbsUp} />
         ) : (
-          <Stack direction="row" spacing={2}>
+          <Stack direction='row' spacing={2}>
             <Button
-              variant="contained"
-              color="primary"
-              type="submit"
+              variant='contained'
+              color='primary'
+              type='submit'
               //disable the button if the answer is correct
-              disabled={showThumbsUp}
-            >
+              disabled={showThumbsUp}>
               "Submit Answer"
               {/* Submit Answer */}
               {/* <ThumbsUp display={showThumbsUp} /> */}
             </Button>
             {showFailureMessage && (
-              <Typography variant="h6">Try again!</Typography>
+              <Typography variant='h6'>Try again!</Typography>
             )}
           </Stack>
         )}

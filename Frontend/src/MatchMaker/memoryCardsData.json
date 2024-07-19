@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "term": "Model",
+    "description": "The state of your application",
+    "source": "Model is the state of your application. It tells you what your application looks like at any point in time.",
+    "times_seen": 0,
+    "times_correct": 0,
+    "times_incorrect": 0
+  },
+  {
+    "id": 2,
+    "term": "View",
+    "description": "A way to turn your state into HTML",
+    "source": "View is a way to turn your state into HTML. It describes what your application looks like at any point in time.",
+    "times_seen": 0,
+    "times_correct": 0,
+    "times_incorrect": 0
+  },
+  {
+    "id": 3,
+    "term": "Update",
+    "description": "A way to update your state based on messages",
+    "source": "Update is a way to update your state based on messages. It describes how your state changes in response to messages.",
+    "times_seen": 0,
+    "times_correct": 0,
+    "times_incorrect": 0
+  },
+  {
+    "id": 4,
+    "term": "Pure Function",
+    "description": "A function that always returns the same output given the same input",
+    "source": "Pure Function is a function that always returns the same output given the same input. It describes how your state changes in response to messages.",
+    "times_seen": 0,
+    "times_correct": 0,
+    "times_incorrect": 0
+  },
+  {
+    "id": 5,
+    "term": "Side Effect",
+    "description": "A function that does something other than return a value",
+    "source": "Side Effect is a function that does something other than return a value. It describes how your state changes in response to messages.",
+    "times_seen": 0,
+    "times_correct": 0,
+    "times_incorrect": 0
+  },
+  {
+    "id": 6,
+    "term": "Message",
+    "description": "A description of a state change",
+    "source": "Message is a description of a state change. It describes how your state changes in response to messages.",
+    "times_seen": 0,
+    "times_correct": 0,
+    "times_incorrect": 0
+  },
+  {
+    "id": 7,
+    "term": "State",
+    "description": "The state of your application",
+    "source": "State is the state of your application. It tells you what your application looks like at any point in time.",
+    "times_seen": 0,
+    "times_correct": 0,
+    "times_incorrect": 0
+  },
+  {
+    "id": 8,
+    "term": "HTML",
+    "description": "A way to turn your state into HTML",
+    "source": "HTML is a way to turn your state into HTML. It describes what your application looks like at any point in time.",
+    "times_seen": 0,
+    "times_correct": 0,
+    "times_incorrect": 0
+  },
+  {
+    "id": 9,
+    "term": "CSS",
+    "description": "A way to update your state based on messages",
+    "source": "CSS is a way to update your state based on messages. It describes how your state changes in response to messages.",
+    "times_seen": 0,
+    "times_correct": 0,
+    "times_incorrect": 0
+  },
+  {
+    "id": 10,
+    "term": "JavaScript",
+    "description": "A function that always returns the same output given the same input",
+    "source": "JavaScript is a function that always returns the same output given the same input. It describes how your state changes in response to messages.",
+    "times_seen": 0,
+    "times_correct": 0,
+    "times_incorrect": 0
+  }
+]

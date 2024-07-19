@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import { keyframes } from "@emotion/react";
+import { Card } from "../types";
 
 const appear = keyframes`
     from {
@@ -65,17 +66,17 @@ const StyledBox = styled(Box)`
 `;
 
 interface MatchCardProps {
-  text: string;
+  cardItem: Card;
   type: string;
-  active: boolean;
+  activeCard: Card | null;
   matched: boolean;
-  onClick: (text: string) => void;
-  onChange: (text: string) => void;
+  onClick: (newCard: Card | null) => void;
+  onChange: (oldCard: Card) => void;
 }
 
 const MatchCard = ({
-  text,
-  active,
+  cardItem,
+  activeCard,
   onClick,
   matched,
   onChange,
@@ -84,26 +85,26 @@ const MatchCard = ({
     let setTimeoutId: any;
     if (matched) {
       setTimeoutId = setTimeout(() => {
-        onChange(text);
+        onChange(cardItem);
       }, 1000);
     }
     return () => clearTimeout(setTimeoutId);
   }, [matched]);
 
   const handleClick = () => {
-    if (!active) onClick(text);
-    else onClick("");
+    if (!activeCard) onClick(cardItem);
+    else onClick(null);
   };
 
   return (
     <StyledBox>
       <StyledCardButton
         variant="contained"
-        cts={active ? "white" : "#111"}
+        cts={activeCard ? "white" : "#111"}
         state={!matched}
         onClick={handleClick}
       >
-        {text}
+        {cardItem.text}
       </StyledCardButton>
     </StyledBox>
   );

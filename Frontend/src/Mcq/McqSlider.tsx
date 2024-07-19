@@ -1,17 +1,19 @@
-import { Slide, Box } from "@mui/material";
-import React, { useState, useEffect } from "react";
-import { Question_i } from "./interfaces";
+/** @format */
+
+import { Slide, Box } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { mcq } from '../interfaces';
 
 const McqSlider: React.FC<{
   children: React.ReactNode;
   questionIndex: number;
   sectionIndex: number;
-  question: Question_i;
+  question: mcq;
   questionChanger: (questionIndex: number) => void;
 }> = ({ children, questionIndex, sectionIndex, question, questionChanger }) => {
   const [slideDirection, setSlideDirection] = useState<
-    "left" | "right" | "up" | "down"
-  >("left");
+    'left' | 'right' | 'up' | 'down'
+  >('left');
   const [slideMount, setSlideMount] = useState<boolean>(false);
   const [previousSectionIndex, setPreviousSectionIndex] = useState<number>(-1);
   const [previousQuestionIndex, setPreviousQuestionIndex] =
@@ -20,12 +22,12 @@ const McqSlider: React.FC<{
   useEffect(() => {
     if (sectionIndex !== previousSectionIndex) {
       // Go up
-      if (sectionIndex >= previousSectionIndex) setSlideDirection("down");
+      if (sectionIndex >= previousSectionIndex) setSlideDirection('down');
       // Go down
-      else setSlideDirection("up");
+      else setSlideDirection('up');
     } else {
-      if (questionIndex >= previousQuestionIndex) setSlideDirection("right");
-      else setSlideDirection("left");
+      if (questionIndex >= previousQuestionIndex) setSlideDirection('right');
+      else setSlideDirection('left');
     }
 
     const timeOutId = setTimeout(() => {
@@ -40,13 +42,13 @@ const McqSlider: React.FC<{
   useEffect(() => {
     if (sectionIndex !== previousSectionIndex) {
       // Go up
-      if (sectionIndex >= previousSectionIndex) setSlideDirection("up");
+      if (sectionIndex >= previousSectionIndex) setSlideDirection('up');
       // Go down
-      else setSlideDirection("down");
+      else setSlideDirection('down');
       setPreviousSectionIndex(sectionIndex);
     } else {
-      if (questionIndex >= previousQuestionIndex) setSlideDirection("left");
-      else setSlideDirection("right");
+      if (questionIndex >= previousQuestionIndex) setSlideDirection('left');
+      else setSlideDirection('right');
       setPreviousQuestionIndex(questionIndex);
     }
     setSlideMount(true);

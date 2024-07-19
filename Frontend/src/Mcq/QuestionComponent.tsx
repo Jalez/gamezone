@@ -1,26 +1,29 @@
-import React, { useState, useEffect } from "react";
-import ThumbsUp from "../ThumbsUp";
-import { Question_i } from "./interfaces";
+/** @format */
+
+import React, { useEffect, useState } from "react";
 import Question from "./Question";
 import McqSlider from "./McqSlider";
+import { mcq } from "../interfaces";
 
 const QuestionComponent: React.FC<{
-  questions: Question_i[];
+  mcqs: mcq[];
   questionIndex: number;
   sectionIndex: number;
   onAnswer: (answer: string) => void;
-}> = ({ questions, questionIndex, sectionIndex, onAnswer }) => {
-  const [question, setQuestion] = useState<Question_i>(
-    questions[questionIndex]
-  );
+}> = ({ mcqs, questionIndex, sectionIndex, onAnswer }) => {
+  const [question, setQuestion] = useState<mcq>(mcqs[questionIndex]);
 
   const questionChanger = (questionIndex: number) => {
-    setQuestion(questions[questionIndex]);
+    setQuestion(mcqs[questionIndex]);
   };
 
   const handleAnswer = (answer: boolean) => {
     if (answer) onAnswer(question.answer);
   };
+
+  useEffect(() => {
+    setQuestion(mcqs[questionIndex]);
+  }, [mcqs, questionIndex]);
 
   return (
     <>
