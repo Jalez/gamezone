@@ -62,19 +62,19 @@ export interface Chapter {
   games: Game[];
 }
 
-export interface Article {
-  title: string;
-  author: string;
-  chapters: Chapter[];
-}
+// export interface Article {
+//   title: string;
+//   author: string;
+//   chapters: Chapter[];
+// }
 
 // Interface for the main object structure
 export interface GeneralArticle {
   _id: string;
   creators: Creator[];
   parent: string | null;
-  children: Article[] | string[] | RootChildArticle[]; // Assuming children can be of type Article or string (ID)
-  siblings: Article[] | string[]; // Assuming siblings are represented by their IDs
+  children: GeneralArticle[] | string[] | RootChildArticle[]; // Assuming children can be of type Article or string (ID)
+  siblings: GeneralArticle[] | string[]; // Assuming siblings are represented by their IDs
   details: Details;
   games: Game[]; // Assuming games can be of any type, you may need to define a more specific type based on your data.
   __v: number;
@@ -91,8 +91,8 @@ export interface RootChildArticle extends GeneralArticle {
 }
 
 export interface CurrentArticle extends GeneralArticle {
-  children: Article[];
-  siblings: Article[];
+  children: GeneralArticle[];
+  siblings: GeneralArticle[];
 }
 
 interface Creator {
