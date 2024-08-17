@@ -3,11 +3,14 @@
 export interface newGameInitialData {
   name: string;
   type: string;
-  generate?: boolean;
+  generateMainArticle: boolean;
+  generateContent: boolean;
+  dataForGeneration?: Details[] | [];
+  mcqs?: mcq[];
 }
 
 export interface Game extends newGameInitialData {
-  id: number;
+  _id?: number;
   mcqs?: mcq[];
   WordFill?: WordFill;
   MatchMaker?: MatchMaker;
@@ -70,14 +73,14 @@ export interface Chapter {
 
 // Interface for the main object structure
 export interface GeneralArticle {
-  _id: string;
+  _id?: string;
   creators: Creator[];
   parent: string | null;
   children: GeneralArticle[] | string[] | RootChildArticle[]; // Assuming children can be of type Article or string (ID)
   siblings: GeneralArticle[] | string[]; // Assuming siblings are represented by their IDs
   details: Details;
   games: Game[]; // Assuming games can be of any type, you may need to define a more specific type based on your data.
-  __v: number;
+  __v?: number;
 }
 
 export interface RootArticle extends GeneralArticle {
@@ -96,16 +99,16 @@ export interface CurrentArticle extends GeneralArticle {
 }
 
 interface Creator {
-  _id: string;
+  _id?: string;
   username: string;
   email: string;
 }
 
 // Interface for the details object
-interface Details {
-  _id: string;
+export interface Details {
+  _id?: string;
   title: string;
-  author: string;
+  author?: string;
   content: string[]; // Assuming content can be of any type, you may need to define a more specific type based on your data.
-  __v: number;
+  __v?: number;
 }

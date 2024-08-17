@@ -14,6 +14,7 @@ const app = express();
 app.use(cors()); //use cors to allow cross origin resource sharing so that the frontend can access the backend even if they are in different domains
 const PORT = process.env.PORT || 3000;
 
+app.use(express.json());
 // Middleware
 app.use(bodyParser.json());
 

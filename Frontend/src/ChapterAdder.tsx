@@ -9,11 +9,11 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import { Chapter } from './interfaces';
+import { Details, Game } from './interfaces';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 type ChapterAdder = {
-  addChapter: (chapter: Chapter) => void;
+  addChapter: (newChapterDetails: Details, games: Game[]) => void;
 };
 
 /**
@@ -25,6 +25,7 @@ type ChapterAdder = {
 const ChapterAdder = ({ addChapter }: ChapterAdder) => {
   const [chapterName, setChapterName] = useState('');
   const [chapterContent, setChapterContent] = useState('');
+  const [chapterAuthor, setChapterAuthor] = useState('');
   const [openAdder, setOpenAdder] = useState(false);
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -32,7 +33,16 @@ const ChapterAdder = ({ addChapter }: ChapterAdder) => {
     // Handle form submission logic here
     console.log('Chapter Name:', chapterName);
     console.log('Chapter Content:', chapterContent);
-    addChapter({ title: chapterName, content: chapterContent, mcqs: [] });
+    //Split the chapter content into paragraphs
+    const chapterParagraphs = chapterContent.split('\n');
+    const newChapterDetails: Details = {
+      title: chapterName,
+      content: chapterParagraphs,
+      author: chapterAuthor,
+    };
+
+    const games: Game[] = [];
+    addChapter(newChapterDetails, games);
     handleClose();
   };
 
@@ -45,9 +55,16 @@ const ChapterAdder = ({ addChapter }: ChapterAdder) => {
       <Button
         onClick={() => setOpenAdder(true)}
         // Dont automatically put the letters to uppercase
-        sx={{ textTransform: 'none', display: 'flex', gap: 1 }}>
+        sx={{
+          width: '130px',
+          textTransform: 'none',
+          display: 'flex',
+          gap: 1,
+
+          justifyContent: 'flex-start',
+        }}>
         <AddCircleIcon />
-        New Chapter
+        New Page
       </Button>
       <Modal
         open={openAdder}
@@ -78,6 +95,13 @@ const ChapterAdder = ({ addChapter }: ChapterAdder) => {
               value={chapterName}
               onChange={(e) => setChapterName(e.target.value)}
               required
+            />
+            <TextField
+              label='Author (Optional)'
+              variant='outlined'
+              value={chapterAuthor}
+              onChange={(e) => setChapterAuthor(e.target.value)}
+              required={false}
             />
             <TextField
               label='Chapter Content'

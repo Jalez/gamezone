@@ -61,8 +61,8 @@ if (rootElement) {
   // Updated rendering method for React 18
   const root = ReactDOM.createRoot(rootElement);
   root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    // <React.StrictMode>
+    <App />
+    // </React.StrictMode>
   );
 }

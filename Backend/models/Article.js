@@ -12,4 +12,5 @@ const ArticleSchema = new Schema({
   games: [{ type: Schema.Types.ObjectId, ref: 'Game' }],
 });
 
+// Export the Article model
 module.exports = mongoose.model('Article', ArticleSchema);

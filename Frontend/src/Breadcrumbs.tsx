@@ -1,15 +1,16 @@
 /** @format */
 
-import * as React from "react";
-import Typography from "@mui/material/Typography";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
+import * as React from 'react';
+import Typography from '@mui/material/Typography';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 // import Link from '@mui/material/Link';
-import { Breadcrumb } from "./types";
-import { Link } from "react-router-dom";
+import { Breadcrumb } from './types';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
-  console.info("You clicked a breadcrumb.");
+  console.info('You clicked a breadcrumb.');
 }
 
 type BasicBreadcrumbsProps = {
@@ -24,26 +25,28 @@ export default function BasicBreadcrumbs({
   updateBreadcrumbs,
 }: BasicBreadcrumbsProps) {
   return (
-    <div role="presentation" onClick={handleClick}>
-      <Breadcrumbs aria-label="breadcrumb">
+    <div role='presentation' onClick={handleClick}>
+      <Breadcrumbs aria-label='breadcrumb'>
         {breadcrumbs.map((breadcrumb, index) => {
           if (index === breadcrumbs.length - 1) {
             return (
-              <Typography key={breadcrumb.href} color="textPrimary">
+              <Button disabled key={breadcrumb.href} color='inherit'>
                 {breadcrumb.name}
-              </Typography>
+              </Button>
             );
           }
           return (
             <Link
+              // component={Button}
               key={breadcrumb.href}
-              color="inherit"
+              color='inherit'
+              //Stylize this with modern look
+              // style={{ textDecoration: 'none' }}
               to={breadcrumb.href}
               onClick={() => {
                 updateBreadcrumbs(index);
-              }}
-            >
-              {breadcrumb.name}
+              }}>
+              <Button>{breadcrumb.name}</Button>
             </Link>
           );
         })}
