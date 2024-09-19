@@ -1,11 +1,14 @@
 /** @format */
 
-const mongoose = require('mongoose');
 
-const gameSchema = new mongoose.Schema({
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const gameSchema = new Schema({
   type: String,
   name: String,
-  mcqs: [
+  creators: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  content: [
     {
       question: String,
       options: [String],

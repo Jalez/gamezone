@@ -59,7 +59,7 @@
     "mcq-1": {
       "type": "Mcq",
       "name": "Mcq1",
-      "mcqs": [
+      "content": [
         {
           "question": "What does 'development' refer to in the context of human growth?",
           "options": [
@@ -144,7 +144,7 @@
     "mcq-2": {
       "type": "Mcq",
       "name": "Mcq2",
-      "mcqs": [
+      "content": [
         {
           "question": "Development is described as changes and continuities that occur from:",
           "options": [
