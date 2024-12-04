@@ -29,15 +29,27 @@ router.get('/:id', async (req, res) => {
 // Update Detail
 router.put('/:id', async (req, res) => {
   try {
+    // Take new date from the server
+    req.body.edit = Date.now();
+
+    // Remove the `_id` field if it exists in the request body
+    if ('_id' in req.body) {
+      delete req.body._id;
+    }
+
     const detail = await Detail.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
+
     if (!detail) return res.status(404).send('Detail not found');
+
     res.send(detail);
   } catch (error) {
+    console.log(error);
     res.status(400).send(error.message);
   }
 });
+
 
 // Delete Detail
 router.delete('/:id', async (req, res) => {

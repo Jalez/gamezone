@@ -1,0 +1,2 @@
+- step is not being updated correctly when a new game is added: should change to this new step
+- When adding a new 

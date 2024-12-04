@@ -14,7 +14,6 @@ router.get('/root-articles', async (req, res) => {
       .populate('children')
       .populate('siblings')
       .populate('details')
-      .populate('games');
     res.json(rootArticles);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -103,6 +102,7 @@ router.post('/', async (req, res) => {
 
       // Replace details in the request body with the ObjectId
       rest.details = savedDetail._id;
+      req.body.details = savedDetail;
     }
 
     // Step 2: Handle creators
@@ -122,6 +122,7 @@ router.post('/', async (req, res) => {
         })
       );
       rest.creators = savedCreators;
+      req.body.creators = savedCreators;
     }
 
     // Step 3: Handle games
