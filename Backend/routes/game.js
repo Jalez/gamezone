@@ -7,6 +7,7 @@ const Game = require('../models/Game');
 // Create Game
 router.post('/', async (req, res) => {
   try {
+    console.log(req.body);
     const game = new Game(req.body);
     await game.save();
     res.status(201).send(game);
